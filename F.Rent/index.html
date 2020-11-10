@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <title>Final Rent</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="common/css/bootstrap.min.css" />
+            <link rel="stylesheet" type="text/css" href="common/css/custom.css" />
+        
+    </head>
+    <body>
+        
+        <!-- navbar -->
+        <nav class="navbar navbar-expand-sm  navbar-dark fixed-top">
+            <a class="navbar-brand" href="#">Final Rent</a>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                     <div class="navbar-nav">
+                            <a class="nav-item nav-link" href="#" id='home'>Home</a>
+                            <a class="nav-item nav-link" href="#" id='fazerreserva'>Reservar</a>
+                            <a class="nav-item nav-link" href="#" id='pesquisa' >Pesquisar</a>
+                            <a class="nav-item nav-link" href="#" id='sobrenos'>Sobre nós</a>
+                            <a class="nav-item nav-link" href="#" id='login'>Iniciar Sessão</a>
+                            <a class="nav-item nav-link" href="#" id='sign_up'>Criar conta</a>
+                            
+                            
+                          <div class="dropdown">  
+                            <a class="nav-link dropdown-toggle" href="#" id="ajuda" role="button" data-toggle="dropdown">
+                        Ajuda</a> 
+                    <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#" id="categorias">Categorias</a>
+                            <a class="dropdown-item" href="#" id="localizacoes">Empresas</a>
+                            <a class="dropdown-item" href="#" id='perguntas' >Perguntas frequentes</a></div> </div>
+                            
+                         <div class="dropdown">      
+                            <a class="nav-link dropdown-toggle" href="#" id="conta" role="button" data-toggle="dropdown">
+                        Conta</a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#" id="update_account">Alterar dados</a>
+                            <a class="dropdown-item" href="#" id="reservas">Reservas</a>
+                            <a class="dropdown-item" href="#" id='logout' >Terminar Sessão</a></div>  </div>
+                   
+                     
+                </div>
+            </div>
+        </nav>
+        <!-- /navbar -->   
+
+
+        <!-- container -->
+        <main role="main" class="container starter-template">
+
+            <div class="row">
+                <div class="col">
+
+                    <!-- where prompt / messages will appear -->
+                    <div id="response"></div>
+
+                    <!-- where main content will appear -->
+                    <div id="content"></div>
+                </div>
+            </div>
+
+        </main>
+        <!-- /container -->
+
+        <!-- jQuery & Bootstrap 4 JavaScript libraries -->
+        <script src="common/js/jquery-3.3.1.min.js"></script>
+        <script src="common/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript">
+            // jQuery codes
+            $(document).ready(function () {
+
+
+/*****************************************************************************
+ *  H O M E P A G E
+ *****************************************************************************/
+                // trigger click home page
+                $(document).on('click', '#home', function () {
+                    showHomePage();
+                    clearResponse();
+                });
+                
+                // Mostrar homepage
+                showHomePage();
+                showLoggedOutMenu();
+                
+                // show home page
+                function showHomePage() {
+
+                        var html = `
+                         <style>
+        body {background-image: url("imagens/trafficsun.jpg");
+        background-size: cover;
+        </style>
+                             <div class "home">
+  <h1 id="titulohome">Bem-vindo à Final Rent!</h1>
+  <p id="phome">O automóvel ideal para si ao melhor preço!</p>
+        
+</div>
+                            `;
+
+                        $('#content').html(html);
+                       
+                    }
+                    
+                    
+                    
+                // if the user is logged in
+                function showLoggedInMenu() {
+                    // hide login and sign up from navbar & show logout button
+                    $("#login, #sign_up").hide();
+                    $("#logout, #conta, #fazerreserva").show();
+                }
+                
+                // if the user is logged out
+                function showLoggedOutMenu() {
+                    // show login and sign up from navbar & hide logout button
+                    $("#login, #sign_up").show();
+                    $("#logout, #conta, #fazerreserva").hide();
+                }
+                
+  /*****************************************************************************
+ *  E M P R E S A S
+ *****************************************************************************/
+    // trigger click home page
+                $(document).on('click', '#localizacoes', function () {
+                    showLocalizacoes();
+                    clearResponse();
+                });
+                // show home page
+                function showLocalizacoes() {
+
+                        // if valid, show homepage
+                        var html = `
+                        <style>
+        body {background-image: url("imagens/city.jpg");
+        background-attachment: fixed;
+        background-size: cover;
+        
+        </style> 
+      
+      <div class="card" style="width: 35rem;">
+  <img src="imagens/standi8.png" class="card-img-top" >
+  <div class="card-body">
+    <h4 class="card-title">Green Drive (empresa 1)</h4>
+    <p class="card-text">Empresa dedicada a aluguer veículos elétricos.</p>
+    <a href="#" class="btn btn-success" onclick="window.open('http://www.google.com/maps/place/Av.+Em%C3%ADdio+Navarro+171,+3500-159+Viseu/@40.6626701,-7.9107259,19z/data=!3m1!4b1!4m5!3m4!1s0xd23364955a1e335:0xd0221cdbe217ab2a!8m2!3d40.6626691!4d-7.9101787')">Obter direções</a>
+  </div>
+</div> <br><br>
+        
+         <div class="card" style="width: 35rem;">
+  <img src="imagens/merc.jpg" class="card-img-top" >
+  <div class="card-body">
+    <h4 class="card-title">PetizCar (empresa 2)</h4>
+    <p class="card-text">Empresa dedicada a todo o tipo de carros citadinos.</p>
+    <a href="#" class="btn btn-success" onclick="window.open('https://www.google.com/maps/place/R.+do+Raimundo,+%C3%89vora/@38.56934,-7.9116825,20.25z/data=!4m5!3m4!1s0xd19e4deb46ebed1:0x21da21fbbc4993eb!8m2!3d38.5692887!4d-7.9114897')">Obter direções</a>
+  </div>
+</div> <br><br>
+        
+         <div class="card" style="width: 35rem;">
+  <img src="imagens/transit.jpg" class="card-img-top" >
+  <div class="card-body">
+    <h4 class="card-title">Comercial Rent (empresa 5)</h4>
+    <p class="card-text">Empresa especializada em veículos comerciais para lhe dar o suporte que necessita no seu negócio.</p>
+    <a href="#" class="btn btn-success" onclick="window.open('https://www.google.com/maps/place/Largo+do+Rossio,+3800-198+Aveiro/@40.6423339,-8.6585532,17z/data=!3m1!4b1!4m5!3m4!1s0xd23980311fc6397:0x3ad9572aaf6edbae!8m2!3d40.6423299!4d-8.6563645')">Obter direções</a>
+  </div>
+</div> <br><br>
+        
+         <div class="card" style="width: 35rem;">
+  <img src="imagens/sport.jpg" class="card-img-top" >
+  <div class="card-body">
+    <h4 class="card-title">SportCar (empresa 4)</h4>
+    <p class="card-text">Empresa dedicada ao aluguer de todo o tipo de automóveis desportivos</p>
+    <a href="#" class="btn btn-success" onclick="window.open('https://www.google.com/maps/place/R.+de+Dom+Manuel+II,+4050-346+Porto/@41.1485166,-8.6274101,17z/data=!3m1!4b1!4m5!3m4!1s0xd24651b325dffe3:0x956709e453d04576!8m2!3d41.1485126!4d-8.6252214')">Obter direções</a>
+  </div>
+</div> <br><br>
+        
+         <div class="card" style="width: 35rem;">
+  <img src="imagens/specialcar.jpg" class="card-img-top" >
+  <div class="card-body">
+    <h4 class="card-title">SpecialCar (empresa 3)  </h4>
+    <p class="card-text">Para as pessoas com necessidades especiais a nível motor, esta empresa disponibiliza todo o tipo de veículos adapatados, para que possa conduzir de forma independente.</p>
+    <a href="#" class="btn btn-success" onclick="window.open('https://www.google.com/maps/place/R.+da+Barroca+64,+1200-043+Lisboa/@38.7118853,-9.1466805,17z/data=!3m1!4b1!4m5!3m4!1s0xd19347febc0808d:0xba8331435f3ef8f2!8m2!3d38.7118811!4d-9.1444918')">Obter direções</a>
+  </div>
+</div> <br><br>
+        
+        <div class="card" style="width: 35rem;">
+  <img src="imagens/driveup.jpg" class="card-img-top" >
+  <div class="card-body">
+    <h4 class="card-title">DriveUp (empresa 6)</h4>
+    <p class="card-text">Empresa de aluguer de carros citadinos.</p>
+    <a href="#" class="btn btn-success" onclick="window.open('https://www.google.com/maps/place/R.+Dr.+Ant%C3%B3nio+Guerreiro+Tello,+8600-672+Lagos/@37.1016166,-8.6803129,17z/data=!3m1!4b1!4m5!3m4!1s0xd1b31c96841ca27:0x977eab6e1522f33a!8m2!3d37.1016123!4d-8.6781242')">Obter direções</a>
+  </div>
+</div> <br><br>
+        
+        <div class="card" style="width: 35rem;">
+  <img src="imagens/evolt.jpg" class="card-img-top" >
+  <div class="card-body">
+    <h4 class="card-title">Evolt (empresa 6)</h4>
+    <p class="card-text">Empresa especialista em aluguer de vários tipos de automóveis.</p>
+    <a href="#" class="btn btn-success" onclick="window.open('https://www.google.com/maps/place/Largo+Rossio+de+Santa+Clara,+3040-256+Coimbra/@40.203913,-8.4374996,17z/data=!3m1!4b1!4m5!3m4!1s0xd22f9aa26cd988d:0x7f504b35cb3cdd92!8m2!3d40.2039089!4d-8.4353109')">Obter direções</a>
+  </div>
+</div> <br><br>
+
+     
+                            `;
+        
+        
+
+                        $('#content').html(html);
+                        
+                    
+
+                }
+                
+ 
+   /*****************************************************************************
+ *  P E R G U N T A S 
+ *****************************************************************************/
+    // trigger click home page
+                $(document).on('click', '#perguntas', function () {
+                    showPerguntas();
+                    clearResponse();
+                });
+                // show home page
+                function showPerguntas() {
+
+                        // if valid, show homepage
+                        var html = `
+                        <style>
+        body {background-image: url("imagens/mood.jpg");
+        background-attachment: fixed;
+        color: #FFFFFF;
+        background-size: cover;
+        
+        </style> 
+        
+        <div class"ajuda" id="seccaoperguntas">
+  <h1>Perguntas frequentes</h1>  
+<br>
+ <h4 id="categoria">O que necessito para alugar um carro? </h4>
+        <p> Para reservar o seu carro, tudo o que precisa é de estar registado na nossa plataforma. \nQuando for levantar o carro, irá precisar:\n
+-O cartão de crédito do condutor principal / cartão de débito, com fundos suficientes disponíveis para o respetivo pagamento do aluguer/despesas adicionais.
+-Carta de condução completa e válida de cada condutor, adquirida pelo menos há 12 meses.\n
+-Documento de identificação ou qualquer outro documento necessário que o fornecedor necessite.</p>
+        <br>
+ <h4 id="categoria">Que idade tenho de ter para poder alugar um automóvel? </h4>
+        <p> Para a maioria dos fornecedores de aluguer, o requisito de idade é entre 21 a 70 anos. Se tiver menos de 25 ou mais de 70 anos, poderá ter que pagar uma taxa adicional.</p><br>
+ <h4>Que fatores devo ter em conta ao alugar um veículo? </h4>
+        <p>Espaço: Irá tirar mais proveito do seu carro, se escolher um veículo adequado às suas necessidas em relação a passageiros e bagagem. \n
+Localização: Analise, na secção de ajuda, as localizações de cada empresa para que saiba a empresa adequada para a lozalização em que pretende leventar/devolver o automóvel. </p><br>
+ <h4>Como posso encontrar o veículo ao preço ideal? </h4>
+        <p>Trabalhamos com várias empresas nacionais de aluguer de veículos com  uma vasta gama de carros aos melhores preços. É assim que podemos encontrar as ofertas mais baratas de aluguer de carros, em vários pontos do país. Para comparar preços e encontrar o seu carro ideal por um preço imbatível, use a nossa secção de pesquisa.</p><br>
+ 
+     
+                            `;
+        
+        
+
+                        $('#content').html(html);
+                        
+                    
+
+                }
+                
+    
+  /*****************************************************************************
+ *  C A T E G O R I A S
+ *****************************************************************************/
+    // trigger click home page
+                $(document).on('click', '#categorias', function () {
+                    showCategorias();
+                    clearResponse();
+                });
+                // show home page
+                function showCategorias() {
+
+                        // if valid, show homepage
+                        var html = `
+                        <style>
+        body {background-image: url("imagens/cx5.jpg");
+        color: #FFFFFF;
+        background-attachment: fixed;
+        </style> 
+        
+        <div class"ajuda" id="seccaoajuda">
+  <h1>Tipos de Categorias</h1> 
+      <p>A nossa plataforma baseia-se em 10 tipos de categorias:</p> 
+<br>
+ <h4 id="categoria">1- Pequeno </h4>
+        <p>Carro económico e com bagagem reduzida. Ideal para cidade. Ex: Ford Fiesta</p>
+        <br>
+ <h4 id="categoria">2- Compacto </h4>
+        <p>Carro tamanho médio com o essencial para garantir o conforto de 5 pessoas com bagaem moderada. Ex: Audi A3</p><br>
+ <h4>3- Carrinha </h4>
+        <p>Ideal para uma viagem em família, espaçoso e prático. Ex: Peugeot 508 SW. </p><br>
+ <h4>4- SUV </h4>
+        <p>Com um estilo robusto e moderno é um utilitário bastante espaçoso versátil para vários tipos de ocasiões. Ex: VW T-Cross</p><br>
+ <h4>5- Comercial </h4>
+        <p>Tem uma empresa e necessita de um veículo comercial para dar uma ajuda no seu negócio? Este é o tipo de veículo ideal. Ex: Peugeot Partner</p><br>
+ <h4>6- Elétrico </h4>
+        <p>Para os mais preocupados com o meio ambiente, este tipo de carro permite uma condução ecológica e com custos bastantes reduzidos. Ex: Nissan Leaf</p><br>
+ <h4>7- Desportivo </h4>
+        <p>Potência aliada a um estilo de condução desportivo? A combinação perfeitas para umas boas curvas! Ex: Mercedes A45 AMG</p>     <br>
+ <h4>8- Executivo </h4>
+        <p>Um automóvel para fazer uma viagem com todo o conforto e tecnologia à sua disposição. Ex: Audi A7</p><br>
+ <h4>9- Adaptado </h4>
+        <p>Tem uma dificuldade física? É a solução ideal para si!</p><br>
+<h4>10- Minibus </h4>
+        <p>Tipo de veículo ideal para uma viagem com um número de passageiros alargado. Ex: Mercedes Viano</p><br><br>
+     
+                            `;
+        
+        
+
+                        $('#content').html(html);
+                        
+                    
+
+                }
+        
+ 
+ /*****************************************************************************
+ *  F A Z E R   R E S E R V A
+ *****************************************************************************/
+                // trigger click sign up / registration form
+                $(document).on('click', '#fazerreserva', function () {
+                    showfazerreserva();
+                    clearResponse();
+                    
+    });
+                    
+               function showfazerreserva() {
+
+                    var html = `
+                    <style>
+        body {background-image: url("imagens/enginestart.jpg");
+        color: #FFFFFF;
+        background-size: cover;
+       
+        </style>
+                    
+            <h2>Fazer Reserva</h2>  
+            <form id='reservar_form'>
+                <div class="form-group">
+                    <label for="Veiculo_ID">Identificador do Veículo</label>
+                    <input type="text" class="form-control" name="Veiculo_ID" id="Veiculo_ID" required placeholder='insira o ID do veículo'/>
+                </div>
+ 
+                <div class="form-group">
+                    <label for="Utilizador_email">Insira o seu email</label>
+                    <input type="email" class="form-control" name="Utilizador_email" id="Utilizador_email" required placeholder='insira o seu email'  />
+                </div>
+ 
+                <div class="form-group">
+                    <label for="data_levantamento">Levantamento</label>
+                    <input type="datetime-local" class="form-control" name="data_levantamento" id="data_levantamento" required placeholder='insira uma password'/>
+                </div>
+        
+                <div class="form-group">
+                    <label for="data_entrega">Entrega</label>
+                    <input type="datetime-local" class="form-control" name="data_entrega" id="data_entrega" required placeholder='insira uma password'/>
+                </div>
+                
+                <button type='submit' class='btn btn-success'>Fazer reserva</button> 
+            </form>
+      
+            `;
+
+                    clearResponse();
+                    $('#content').html(html);
+                };
+                // trigger when registration form is submitted
+                $(document).on('submit', '#reservar_form', function () {
+
+                    // get form data
+                    var reservar_form = $(this);
+                    var form_data = JSON.stringify(reservar_form.serializeObject());
+
+                    // submit form data to api
+                    $.ajax({
+                        url: "api/reserva/create.php",
+                        type: "POST",
+                        contentType: 'application/json',
+                        data: form_data,
+                        success: function (result) {
+                            // if response is a success, tell the user it was a successful sign up & empty the input boxes
+                            $('#response').html("<div class='alert alert-success'>A sua reserva foi efetuada!</div>");
+                            reservar_form.find('input').val('');
+                        },
+                        error: function (xhr, resp, text) {
+                            // on error, tell the user sign up failed
+                            $('#response').html("<div class='alert alert-danger'>Insira um identificador de veículo válido.</div>");
+                        }
+                    });
+
+                    return false;
+                });
+        
+        
+        
+ /*****************************************************************************
+ *  R E S E R V A S
+ *****************************************************************************/
+    // trigger click home page
+                $(document).on('click', '#reservas', function () {
+                    showReservas();
+                    clearResponse();
+                });
+                // show home page
+                function showReservas() {
+
+                        // if valid, show homepage
+                        var html = `
+                        <style>
+        body {background-image: url("imagens/r8.jpg");
+        background-attachment: fixed;
+        background-size: cover;
+        </style> 
+        <h2>As minhas reservas</h2>  
+        <div class="container">
+   <table class="table table bordered" id="reservasTable">
+      <thead>
+        <tr>
+          <th>Veículo</th>
+          <th>Levantamento</th>
+          <th>Entrega</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+   </table>
+</div>
+        
+     
+                            `;
+        
+        
+
+                        $('#content').html(html);
+                        
+                    
+
+                }
+        
+        
+        
+/*****************************************************************************
+ *  P E S Q U I S A
+ *****************************************************************************/
+
+   $(document).on('click', '#pesquisa', function () {
+                    showPesquisa();
+                    clearResponse();
+                });
+                // show home page
+                function showPesquisa() {
+
+                    var html = `
+                    <style>
+        body {background-image: url("imagens/way.jpg"); 
+        background-size: cover;
+        color: #FFFFFF
+        </style>     
+            <h2>Pesquisar</h2>  
+            <form id='search_form'>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-sm" name="s" id="s" required placeholder='Marca, modelo, combustível...'/>
+                </div>
+            </form>
+                    <button type="button" class="btn btn-outline-warning" id="search_btn">Pesquisar</button>
+                
+     <br><br>
+        <div class="table-responsive">
+   <table class="table table-bordered table-sm table-dark table-striped" id="veiculosTable">
+      <thead>
+        <tr>
+          <th class="text-center">Identificador</th>
+          <th class="text-center">Categoria</th>
+          <th class="text-center">Marca</th>
+          <th class="text-center">Modelo</th>
+          <th class="text-center">Lugares</th>
+          <th class="text-center">€/dia</th>
+          <th class="text-center">Combustível</th>
+          <th class="text-center">Portas</th>
+          <th class="text-center">Caixa</th>
+          <th class="text-center">Empresa</th>
+        </tr>
+      </thead>
+      <tbody id="resposta"></tbody>
+   </table>
+</div>
+            
+      
+            `;
+
+                    clearResponse();
+                    $('#content').html(html);
+                };
+                
+//$("#search_btn").click(function(){
+  $(document).on('click', '#search_btn', function () {  
+    var search_form = $("#search_form");
+    var search_data = JSON.stringify(search_form.serializeObject());
+    
+    
+    $.ajax({
+        url: 'api/veiculo/search.php',
+        type: "POST",
+        data: search_data,
+        dataType: 'JSON',
+        success: function(response) {
+        let veiculosTable = ``; // declara a variável vazia
+
+   // vai montando as linhas com os valores do JSON
+   for(let item of response.records){
+     veiculosTable += `<tr>
+         <td class="text-center">${item.ID}</td>
+         <td class="text-center">${item.id_Categoria}</td>
+         <td class="text-center">${item.Marca}</td>
+         <td class="text-center">${item.Modelo}</td>
+         <td class="text-center">${item.Lugares}</td>
+         <td class="text-center">${item.Preco_dia}</td>
+         <td class="text-center">${item.Combustivel}</td>
+         <td class="text-center">${item.Portas}</td>
+         <td class="text-center">${item.Caixa}</td>
+         <td class="text-center">${item.Empresas_ID}</td>
+      </tr>`;
+   }
+
+   $('#resposta').html(veiculosTable); // insere tudo no tbody
+        },
+                     error: function (xhr, resp, text) {
+                            // on error, tell the user sign up failed
+                            $('#response').html("<div class='alert alert-danger'>Erro de pesquisa: "+xhr+" "+resp+" "+text+'</div>');
+                        }
+    });
+});
+            
+               
+          
+     
+
+
+/*****************************************************************************
+ *  S O B R E  N Ó S
+ *****************************************************************************/
+       // trigger click home page
+                $(document).on('click', '#sobrenos', function () {
+                    showsobrenos();
+                    clearResponse();
+                });
+                // show home page
+                function showsobrenos() {
+
+                        // if valid, show homepage
+                        var html = `
+                        <style>
+        body {background-image: url("imagens/volante.jpg");
+        color: #FFFFFF;
+        background-size: cover;
+        background-attachment: fixed;
+        
+        </style> 
+                        
+                            <div class"sobrenos" id="seccaosobrenos>
+       
+        <img src="imagens/logo_branco.png" height="200" width="200" align="top"/>
+  <h1>Quem somos</h1> 
+        <br> 
+            <p>Somos uma plataforma gratuita de pesquisa de veículos para alugar fundada em 2019.
+          Atualmente o mercado de aluguer de veículos encontra-se em elevado crescimento havendo cada vez mais empresas a apostar no mesmo
+          e com isto surge uma grande diversidade de empresas e de preços o que requer uma pesquisa mais demorada.
+          Temos como objetivo apresentar solução para este problema e ajudá-lo a encontrar o automóvel ideal para si ao melhor preço
+          através do nosso serviço de pesquisa onde poderá pesquisar e alugar um automóvel de forma rápida.
+          Quando precisar de alugar um automóvel apenas tem que pesquisar de acordo com as suas preferências e nós tratamos do resto. 
+          Como pensamos em todos os nossos clientes, temos vários tipos de automóveis, tanto para passeio, trabalho ou até mesmo adapatados
+          para as pessoas com dificuldades físicas.</p> <br><br>
+ <h2>Contactos</h2>
+        <br>
+        <p>Email: geral@finalrent.com</p>
+        <p>Telefone: 256 123 456</p> <br><br>
+        
+<h2>Empresas</h2>
+        <br>
+        <p>Trabalhamos com um leque de empresas de aluguer de automóveis a nível nacional destribuídas por vários pontos do país com uma 
+extensa frota de veículos à sua disposição.</p>   
+                            `;
+
+                        $('#content').html(html);
+                        
+                    
+
+                }
+                
+
+
+/*****************************************************************************
+ *  S I G N U P
+ *****************************************************************************/
+                $(document).on('click', '#sign_up', function () {
+                    showCriarconta();
+                    clearResponse();
+                });
+                // show home page
+                function showCriarconta() {
+
+                    var html = `
+                    <style>
+        body {background-image: url("imagens/r8.jpg");
+        background-size: cover;
+        
+        </style>
+        <br>  <br>      
+                    
+            <h2>Criar Conta</h2>  
+            <form id='sign_up_form'>
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" id="nome" required placeholder='insira o seu nome'/>
+                </div>
+ 
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" required placeholder='insira um emaill' />
+                </div>
+ 
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" required placeholder='insira uma password'/>
+                </div>
+ 
+                <button type='submit' class='btn btn-primary'>Criar conta</button>
+            </form>
+      
+            `;
+
+                    clearResponse();
+                    $('#content').html(html); };
+               
+                // trigger when registration form is submitted
+                $(document).on('submit', '#sign_up_form', function () {
+
+                    // get form data
+                    var sign_up_form = $(this);
+                    var form_data = JSON.stringify(sign_up_form.serializeObject());
+
+                    // submit form data to api
+                    $.ajax({
+                        url: "api/users/create.php",
+                        type: "POST",
+                        contentType: 'application/json',
+                        data: form_data,
+                        success: function (result) {
+                            // if response is a success, tell the user it was a successful sign up & empty the input boxes
+                            $('#response').html("<div class='alert alert-success'>Registo efetuado com sucesso. Bem-vindo à Final Rent!</div>");
+                            sign_up_form.find('input').val('');
+                        },
+                        error: function (xhr, resp, text) {
+                            // on error, tell the user sign up failed
+                            $('#response').html("<div class='alert alert-danger'>Registo inválido!</div>");
+                        }
+                    });
+
+                    return false;
+                });  
+                
+
+/*****************************************************************************
+ *  L O G I N
+ *****************************************************************************/
+                // trigger login form
+                $(document).on('click', '#login', function () {
+                    showLoginPage();
+                });
+                // trigger when login form is submitted
+                $(document).on('submit', '#login_form', function () {
+
+                    // get form data
+                    var login_form = $(this);
+                    var form_data = JSON.stringify(login_form.serializeObject());
+
+                    // submit form data to api
+                    $.ajax({
+                        url: "api/users/login.php",
+                        type: "POST",
+                        contentType: 'application/json',
+                        data: form_data,
+                        success: function (result) {
+
+                            // store jwt to cookie
+                            setCookie("jwt", result.jwt, 1);
+
+                            // show home page & tell the user it was a successful login
+                            showHomePage();
+                            $('#response').html("<div class='alert alert-success'>Bem-Vindo!</div>");
+                            showLoggedInMenu();
+
+                        },
+                        error: function (xhr, resp, text) {
+                            // on error, tell the user login has failed & empty the input boxes
+                            $('#response').html("<div class='alert alert-danger'>Falha ao iniciar sessão. Email ou password incorretos</div>");
+                            login_form.find('input').val('');
+                        }
+                    });
+
+                    return false;
+                });
+                // show login page
+                function showLoginPage() {
+                    
+                    //remove jwt
+                    setCookie("jwt", "", 1);
+
+                    // login page html
+                    var html = `
+                    <style>
+        body {background-image: url("imagens/911.jpg");
+        background-size: cover;
+        </style> 
+        
+          <br>  <br>       
+        <h2>Iniciar Sessão</h2>  
+        <form id='login_form'>
+            <div class='form-group'>
+                <label for='email'>Email</label>
+                <input type='email' class='form-control' id='email' name='email' required placeholder='insira o seu email'>
+            </div>
+ 
+            <div class='form-group'>
+                <label for='password'>Password</label>
+                <input type='password' class='form-control' id='password' name='password' required placeholder='insira a sua password'>
+            </div>
+ 
+            <button type='submit' class='btn btn-primary'>Iniciar Sessão</button>
+        </form>
+        `;
+
+                    $('#content').html(html);
+                    clearResponse();
+                    showLoggedOutMenu();
+                }
+                // trigger logout the user
+                $(document).on('click', '#logout', function () {
+                    showLoginPage();
+                    $('#response').html("<div class='alert alert-info'>Sessão terminada com sucesso!</div>");
+                });
+
+
+/*****************************************************************************
+ *  U P D A T E     A C C O U N T
+ *****************************************************************************/
+                // trigger update account form
+                $(document).on('click', '#update_account', function () {
+                    showUpdateAccountForm();
+                });
+                // trigger when 'update account' form is submitted
+                $(document).on('submit', '#update_account_form', function () {
+
+                    // handle for update_account_form
+                    var update_account_form = $(this);
+
+                    // validate jwt to verify access
+                    var jwt = getCookie('jwt');
+
+                    // get form data
+                    var update_account_form_obj = update_account_form.serializeObject();
+
+                    // add jwt on the object
+                    update_account_form_obj.jwt = jwt;
+
+                    // convert object to json string
+                    var form_data = JSON.stringify(update_account_form_obj);
+
+                    // submit form data to api
+                    $.ajax({
+                        url: "api/users/update.php",
+                        type: "POST",
+                        contentType: 'application/json',
+                        data: form_data,
+                        success: function (result) {
+
+                            // tell the user account was updated
+                            $('#response').html("<div class='alert alert-success'>Dados atualizados com sucesso!</div>");
+
+                            // store new jwt to coookie
+                            setCookie("jwt", result.jwt, 1);
+                        },
+
+                        // show error message to user
+                        error: function (xhr, resp, text) {
+                            if (xhr.responseJSON.message === "Unable to update user.") {
+                                $('#response').html("<div class='alert alert-danger'>Erro ao atualizar os dados</div>");
+                            } else if (xhr.responseJSON.message === "Access denied.") {
+                                showLoginPage();
+                                $('#response').html("<div class='alert alert-success'>Access denied. Please login</div>");
+                            }
+                        }
+                    });
+
+                    return false;
+                });
+                // show update account form
+                function showUpdateAccountForm() {
+                    // validate jwt to verify access
+                    var jwt = getCookie('jwt');
+                    $.post("api/users/validate_token.php", JSON.stringify({jwt: jwt})).done(function (result) {
+
+                        // if response is valid, put user details in the form
+                        var html = `
+                         <style>
+        body {background-image: url("imagens/lbgrad_1.jpg");
+        background-size: cover;
+        </style> 
+        <br>  <br> 
+                                <h2>Alteração de dados pessoais</h2>
+                                <form id='update_account_form'>
+                                    
+                                    
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input readonly type="email" class="form-control" name="email" id="email" required value="` + result.data.email + `"/>
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label for="nome">Nome</label>
+                                        <input type="text" class="form-control" name="nome" id="nome" required value="` + result.data.nome + `" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" name="password" id="password" />
+                                    </div>
+
+                                    <button type='submit' class='btn btn-primary'>
+                                        Atualizar dados
+                                    </button>
+                                </form>
+                            `;
+
+                        clearResponse();
+                        $('#content').html(html);
+                    })
+
+                            // on error/fail, tell the user he needs to login to show the account page
+                            .fail(function (result) {
+                                showLoginPage();
+                                $('#response').html("<div class='alert alert-danger'>Please login to access the account page.</div>");
+                            });
+                }
+
+/*****************************************************************************
+ *  U T I L I T I E S
+ *****************************************************************************/
+                // remove any prompt messages
+                function clearResponse() {
+                    $('#response').html('');
+                }
+
+
+                // function to set cookie
+                function setCookie(cname, cvalue, exdays) {
+                    var d = new Date();
+                    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                    var expires = "expires=" + d.toUTCString();
+                    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+                }
+
+                // get or read cookie
+                function getCookie(cname) {
+                    var name = cname + "=";
+                    var decodedCookie = decodeURIComponent(document.cookie);
+                    var ca = decodedCookie.split(';');
+                    for (var i = 0; i < ca.length; i++) {
+                        var c = ca[i];
+                        while (c.charAt(0) === ' ') {
+                            c = c.substring(1);
+                        }
+
+                        if (c.indexOf(name) === 0) {
+                            return c.substring(name.length, c.length);
+                        }
+                    }
+                    return "";
+                }
+
+
+                // function to make form values to json format
+                $.fn.serializeObject = function () {
+
+                    var o = {};
+                    var a = this.serializeArray();
+                    $.each(a, function () {
+                        if (o[this.name] !== undefined) {
+                            if (!o[this.name].push) {
+                                o[this.name] = [o[this.name]];
+                            }
+                            o[this.name].push(this.value || '');
+                        } else {
+                            o[this.name] = this.value || '';
+                        }
+                    });
+                    return o;
+                };
+            });
+        </script>
+    </body>
+</html>

@@ -1,6 +1,6 @@
-# ProjetoFinalCurso
+# Final Rent - Projeto Final de Curso
  Plataforma web de aluguer de automóveis
  - Registo/Login
- - tabela com veículo
+ - tabela com veículos
  - recurso a API
  - Aluguer de veículos
